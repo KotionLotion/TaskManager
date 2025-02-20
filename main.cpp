@@ -43,7 +43,13 @@ int main() {
                 break;
             }
 
-            // The rest of the menu implementation here
+            case 2: {
+                cout<< "Enter task description to remove: ";
+                getline(cin, description);
+                taskList.removeTask(description);
+                break;
+            }
+
         }
     }
     return 0;

@@ -1,3 +1,6 @@
+#ifndef TASK_H
+#define TASK_H
+
 #include "task.h"
 #include <string>
 using namespace std;
@@ -20,3 +23,5 @@ class TaskList {
         Task* searchTask(string description);
         int getTaskCount();
     };
+
+#endif    

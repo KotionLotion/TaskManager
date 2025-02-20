@@ -1,6 +1,5 @@
 #include "task.h"
 
-// Setup a new Task
 Task::Task(string desc, string prio, string date) {
     description = desc;
     priority = prio;
