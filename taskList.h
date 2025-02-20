@@ -22,6 +22,7 @@ class TaskList {
         void displayByPriority(string priority);
         Task* searchTask(string description);
         int getTaskCount();
+        //hated classes in 6th form. Thank God I had to learn PHP this year.
     };
 
 #endif    
