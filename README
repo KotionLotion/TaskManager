@@ -1,0 +1,27 @@
+#2020151717@ub.edu.bz
+#Jesse Melgar
+# TaskManager
+
+This project is a simple task manager written in C++. It allows users to create, complete, and delete tasks, as well as view the task list.
+
+## How to Run the Code (Linux)
+
+### Prerequisites
+- A C++ compiler (like `g++`).
+- Git installed to clone the repository.
+
+### Steps to Compile and Run
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/KotionLotion/TaskManager.git
+
+2. **Navigate to TaskManager**;
+    cd TaskManager
+3. **Compile the DAMN code.**;
+    g++ main.cpp -o TaskManager
+
+4. **Run the Friggin Program!**;
+    ./TaskManager
+
+#BADABING BADABOOM!
