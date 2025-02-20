@@ -3,45 +3,59 @@
 
 using namespace std;
 
-TaskList::TaskList() {
+TaskList::TaskList()
+{
     head = nullptr;
     tail = nullptr;
     count = 0;
 }
 
-TaskList::~TaskList() {
-    Task* current = head;
-    while (current != nullptr) {
-        Task* next = current->getNext();
+TaskList::~TaskList()
+{
+    Task *current = head;
+    while (current != nullptr)
+    {
+        Task *next = current->getNext();
         delete current;
         current = next;
     }
 }
 
-void TaskList::addTask(string description, string priority, string dueDate) {
-    Task* newTask = new Task(description, priority, dueDate);
-    if (head == nullptr) {
+void TaskList::addTask(string description, string priority, string dueDate)
+{
+    Task *newTask = new Task(description, priority, dueDate);
+    if (head == nullptr)
+    {
         head = newTask;
         tail = newTask;
-    } else {
+    }
+    else
+    {
         tail->setNext(newTask);
         tail = newTask;
     }
     count++;
 }
 
-void TaskList::removeTask(string description) {
-    Task* current = head;
-    Task* previous = nullptr;
+bool TaskList::removeTask(string description)
+{
+    Task *current = head;
+    Task *previous = nullptr;
 
-    while (current != nullptr) {
-        if (current->getDescription() == description) {
-            if (previous == nullptr) {
+    while (current != nullptr)
+    {
+        if (current->getDescription() == description)
+        {
+            if (previous == nullptr)
+            {
                 head = current->getNext();
-            } else {
+            }
+            else
+            {
                 previous->setNext(current->getNext());
             }
-            if (current == tail) {
+            if (current == tail)
+            {
                 tail = previous;
             }
             delete current;
@@ -51,26 +65,60 @@ void TaskList::removeTask(string description) {
         previous = current;
         current = current->getNext();
     }
-    return false; // So this basically says that the code will return false if there is no task found with the description given.
+    return false;
 }
 
-void TaskList::markTaskComplete(string description) {
-    // TODO: Implement markTaskComplete
+bool TaskList::markTaskComplete(string description)
+{
+    Task *task = searchTask(description);
+    if (task != nullptr)
+    {
+        task->setIsComplete(true);
+        return true;
+    }
+    return false;
 }
 
-void TaskList::displayAllTasks() {
-    // TODO: Implement displayAllTasks
+void TaskList::displayAllTasks()
+{
+    Task *current = head;
+    while (current != nullptr)
+    {
+        cout << "Description: " << current->getDescription() << ", Priority: " << current->getPriority()
+             << ", Due Date: " << current->getDueDate() << ", Complete: " << (current->getIsComplete() ? "Yes" : "No") << endl;
+        current = current->getNext();
+    }
 }
 
-void TaskList::displayByPriority(string priority) {
-    // TODO: Implement displayByPriority
+void TaskList::displayByPriority(string priority)
+{
+    Task *current = head;
+    while (current != nullptr)
+    {
+        if (current->getPriority() == priority)
+        {
+            cout << "Description: " << current->getDescription() << ", Priority: " << current->getPriority()
+                 << ", Due Date: " << current->getDueDate() << ", Complete: " << (current->getIsComplete() ? "Yes" : "No") << endl;
+        }
+        current = current->getNext();
+    }
 }
 
-Task* TaskList::searchTask(string description)  {
-    // TODO: Implement searchTask
+Task *TaskList::searchTask(string description)
+{
+    Task *current = head;
+    while (current != nullptr)
+    {
+        if (current->getDescription() == description)
+        {
+            return current;
+        }
+        current = current->getNext();
+    }
+    return nullptr;
 }
 
-int TaskList::getTaskCount() {
-     // TODO: Implement getTaskCount
-
+int TaskList::getTaskCount()
+{
+    return count;
 }

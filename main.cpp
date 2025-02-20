@@ -13,13 +13,12 @@ void displayMenu()
          << "4. Display All Tasks\n"
          << "5. Display Tasks by Priority\n"
          << "6. Search for Task\n"
-         << "7. Exit\n\n"
-         << "############################# \n Enter your choice: ";
+         << "7. Exit\n"
+         << "Enter your choice: ";
 }
 
 int main()
 {
-
     TaskList taskList;
     int choice;
     string description;
@@ -45,48 +44,63 @@ int main()
             taskList.addTask(description, priority, dueDate);
             break;
         }
-
         case 2:
         {
             cout << "Enter task description to remove: ";
             getline(cin, description);
             if (!taskList.removeTask(description))
             {
-                cout << "Task not found!\n"; //does this count as error handling? xd
-            }
-            break;
-        }
-
-        case 3:
-        {
-            cout << "Which task would you like to mark as complete? : ";
-            getline(cin, description);
-            if (!taskList.markTaskComplete(description)) {
                 cout << "Task not found!\n";
             }
             break;
         }
-
+        case 3:
+        {
+            cout << "Enter task description to mark as complete: ";
+            getline(cin, description);
+            if (!taskList.markTaskComplete(description))
+            {
+                cout << "Task not found!\n";
+            }
+            break;
+        }
         case 4:
         {
-
+            taskList.displayAllTasks();
+            break;
         }
-
         case 5:
         {
-
+            cout << "Enter priority to display (High/Medium/Low): ";
+            getline(cin, priority);
+            taskList.displayByPriority(priority);
+            break;
         }
-
         case 6:
         {
-
+            cout << "Enter task description to search: ";
+            getline(cin, description);
+            Task *task = taskList.searchTask(description);
+            if (task != nullptr)
+            {
+                cout << "Task found: " << task->getDescription() << ", Priority: " << task->getPriority()
+                     << ", Due Date: " << task->getDueDate() << ", Complete: " << (task->getIsComplete() ? "Yes" : "No") << endl;
+            }
+            else
+            {
+                cout << "Task not found!\n";
+            }
+            break;
         }
-
         case 7:
         {
-
+            return 0;
         }
-
+        default:
+        {
+            cout << "Invalid choice!\n";
+            break;
+        }
         }
     }
     return 0;

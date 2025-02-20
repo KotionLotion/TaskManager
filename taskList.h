@@ -1,28 +1,28 @@
-#ifndef TASK_H
-#define TASK_H
+#ifndef TASKLIST_H
+#define TASKLIST_H
 
 #include "task.h"
-#include <string>
+
 using namespace std;
 
-class TaskList {
-    private:
-        Task* head;
-        Task* tail;
-        int count;
+class TaskList
+{
+private:
+    Task *head;
+    Task *tail;
+    int count;
 
-    public:
-        TaskList();
-        ~TaskList();
-        
-        void addTask(string description, string priority, string dueDate);
-        void removeTask(string description);
-        void markTaskComplete(string description);
-        void displayAllTasks();
-        void displayByPriority(string priority);
-        Task* searchTask(string description);
-        int getTaskCount();
-        //hated classes in 6th form. Thank God I had to learn PHP this year.
-    };
+public:
+    TaskList();
+    ~TaskList();
 
-#endif    
+    void addTask(string description, string priority, string dueDate);
+    bool removeTask(string description);
+    bool markTaskComplete(string description);
+    void displayAllTasks();
+    void displayByPriority(string priority);
+    Task *searchTask(string description);
+    int getTaskCount();
+};
+
+#endif
